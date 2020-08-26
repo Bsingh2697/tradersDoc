@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Submissions from './components/Submissions';
+
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom"
+import Nav from './components/Nav';
+import Login from './components/Login';
+import About from './components/About';
+import Contactus from './components/contactus';
+
 
 function App() {
+  useEffect(()=>{
+
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+        <Nav/>
+      <Switch>
+        <Route path = "/" exact component={Login}/>
+        {/* <Route path = "/upload" exact component={Submissions}/> */}
+        <Route path="/about" component={About}/>
+        <Route path="/contact" component={Contactus}/>
+      </Switch>
+    </Router>
+
   );
 }
 
