@@ -23,6 +23,9 @@ useEffect(()=>{
         localStorage.setItem('CurrentUser',`${response.profileObj.googleId}`)
         localStorage.setItem('UserData',JSON.stringify(response))
     }
+    const responseGoogleFail = (response) => {
+        setLogin(false)
+    } 
     return (
         <div className='loginSt'>
             {!login ? <h1>Login To upload docs</h1> : null}
@@ -31,7 +34,7 @@ useEffect(()=>{
                 clientId="491893953138-8f04gaeffcmf6vr95gk0ptj8dd0dd3h6.apps.googleusercontent.com"
                 buttonText="Login"
                 onSuccess={responseGoogle}
-                onFailure={responseGoogle}
+                onFailure={responseGoogleFail}
                 cookiePolicy={'single_host_origin'}
             />:
             <div>
@@ -39,7 +42,7 @@ useEffect(()=>{
                 <img src={data.profileObj?.imageUrl} alt="logo"/>
                 <Submissions data = {data} />
             </div> 
-            }
+            } 
         </div>
     )
 }

@@ -8,6 +8,7 @@ import Nav from './components/Nav';
 import Login from './components/Login';
 import About from './components/About';
 import Contactus from './components/contactus';
+import Subs from './components/subs';
 
 
 function App() {
