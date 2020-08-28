@@ -12,15 +12,17 @@ function Submissions(props) {
     const sendMail = (e) => {
         e.preventDefault()
         setDocs([...docs,file.name])
-        
-        var storageRef = firebase.storage().ref(`${name}/${file.name}`)
+        console.log("File Data")
+        console.log(file)
+        var storageRef = firebase.storage().ref(`${name}/${props.data.googleId}/${file.name}`)
         storageRef.put(file)  
 
         firebase.database().ref(`${name}`).set({
-        title : name
+        title : name,
+        googleId : props.data.googleId
         })
 
-        emailjs.send('gmail','traders_temp',{name : "Bharat"},'user_xD8xxi8yxBxKv4zhN2oPp')
+        emailjs.send('gmail','traders_temp',{name : name, doc:file.name},'user_xD8xxi8yxBxKv4zhN2oPp')
         .then((result) => {
             console.log(result.text);
         }, (error) => {
